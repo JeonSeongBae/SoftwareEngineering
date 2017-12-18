@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "96189872013",
+    "firebase_url": "https://softwareengineering-b75a1.firebaseio.com",
+    "project_id": "softwareengineering-b75a1",
+    "storage_bucket": "softwareengineering-b75a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96189872013:android:8bc36bb0b491e0ab",
+        "android_client_info": {
+          "package_name": "pos.softwareengineering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96189872013-qrpuio8c1u3lpocc4ovv3k02r7fnb0dr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pos.softwareengineering",
+            "certificate_hash": "8befd858557497f9d0cd3148df6af256080da56d"
+          }
+        },
+        {
+          "client_id": "96189872013-hp2r9qr5941vrivslhf9i22fjsnerp1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLn80ZYq9Oxn1OC5NXjvWD1hec4oz51FY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96189872013-hp2r9qr5941vrivslhf9i22fjsnerp1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
