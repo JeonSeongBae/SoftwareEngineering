@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="pos.softwareengineering.ManagerActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:text="매 출 확 인"
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+        <Button
+            android:text="상품 상세조회"
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:text="할 인 혜 택"
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+        <Button
+            android:text="뒤 로 가 기"
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\c3e39e14530c40b8084b7608a6fec7b8a85cfbd3\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bf5869b14cdc20d53500642e01758f0ba0c1d1f0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\defb33c3071c3e88f050591b37ec9db814e36d2a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c046a58e0c5798256e44e48ab0c3a4139f59433a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\889881a9bae4282c928881551cc616839ff7ea98\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2b9d129a18a63f7a8cf8b6536a7a0f27aa156020\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\446005f1a54889bb8c9b324265851c6b555310b3\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_49e21d71daaa1a3eae4c1074e8cc4cdc59433deb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_6d20d1d87a695e5c0a6f6882551198428ea85e4d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\b0905c517c77234947c47c938a8b378f80193de3\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6f95abe8d9b54e92e19d7d5be2f266f582d71410\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7e06fd795d04684024d748f712cba1774c0abbb1">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_efc88d20c64d79a3e1c7c9ac9911bf0165fe7c2e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\d369cd53a83e394438352d61cb0ab7763d739edc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3cdf8627744951ebe69497c86ad0f64e3a3ab89f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\f321f799b1813e48bea00ec4373b1392cf31fda5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1f33830a6a5b58e001324a4ce8bde6ab41454315\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\9d230e470a682172bb6518df587792b4c04aa736\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9fd01a9e7a70090e1a52467bc90b81a3b4dc75d8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\c24eeaa387a87dca9dad2b54947e3c414276f9b5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0dc0528bdf7895a2356d02b19d9e6d6af581a2a6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\dldlw\.android\build-cache\46fd0af37fd4e02b2b7a21fea4aa7e52a1c18f02\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\dldlw\Desktop\OnU\POS\SoftwareEngineering\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ead31bb3b26418cda78e5f6a7ab3914c1cd03b88\classes.dex" />
+    </item>
+
+</items>
