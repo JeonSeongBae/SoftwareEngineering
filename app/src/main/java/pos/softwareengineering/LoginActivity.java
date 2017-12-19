@@ -40,7 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference.child("UserID").child(ID.getText().toString()).setValue(password.getText().toString());
+                String a = ID.getText().toString();
+                String b = password.getText().toString();
+                if (a.equals("") || b.equals("")){
+                    databaseReference.child("UserID").child("a").setValue("b");
+                }else{
+                    databaseReference.child("UserID").child(ID.getText().toString()).setValue(password.getText().toString());
+                }
+
                 login();
             }
         });
