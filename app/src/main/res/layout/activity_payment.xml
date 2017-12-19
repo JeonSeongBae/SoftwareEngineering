@@ -14,15 +14,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tablenum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="#Table Number"/>
-        <ListView
-            android:id="@+id/paytable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        </ListView>
+            <ListView
+                android:id="@+id/paytable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
 
     </LinearLayout>
 
@@ -33,32 +34,61 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="결제수단 ▼"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="할인적용 ▼"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="20dp"-->
+            <!--android:text="결제수단 ▼"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textSize="20dp"-->
+            <!--android:text="할인적용 ▼"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="받은금액(현금)"/>
+        <ExpandableListView
+            android:id="@+id/expanded_menu"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+
+        </ExpandableListView>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="총합 : "/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="000000000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/givepay"
+                android:textSize="16dp"
+                android:text="받은금액 :"/>
+            <EditText
+                android:id="@+id/givenpay"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="총합 : "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/pay"
+                android:text="000000000"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/exchange"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="거스름돈"/>
         <LinearLayout
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
@@ -67,10 +97,14 @@
             <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:text="취소"
+                android:id="@+id/canclebtn"
                 android:layout_height="wrap_content" />
             <Button
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:id="@+id/paymentbtn"
+                android:text="결제"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
