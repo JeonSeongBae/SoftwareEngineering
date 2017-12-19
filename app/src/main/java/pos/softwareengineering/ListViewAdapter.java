@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter{
     ArrayList<Foodlist> foodlist = new ArrayList<Foodlist>();
+    int startDate;
+    int endDate;
+    ArrayList<String> check = new ArrayList<String>();
 
     @Override
     public int getCount() {
@@ -36,14 +39,24 @@ public class ListViewAdapter extends BaseAdapter{
         }
         TextView menu = (TextView) view.findViewById(R.id.menu);
         TextView number = (TextView) view.findViewById(R.id.number);
-
-        menu.setText(food.getMenu());
-        number.setText(food.getNumber());
-
+        if (!check.contains(food.getMenu())){
+            int count = 0;
+            for (int index = 0; index < foodlist.size(); index++){
+                int date = foodlist.get(index).getDate();
+                if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > startDate && date < endDate){
+                    int s = foodlist.get(index).getNumber();
+                    count += s;
+                }
+            }
+            menu.setText(food.getMenu());
+            check.add(food.getMenu());
+            number.setText(String.valueOf(count));
+        }
         return view;
     }
-
-    public void addItem(Foodlist food){
-        foodlist.add(food);
+    public void addItem(ArrayList<Foodlist> food, String start, String end){
+        startDate = Integer.parseInt(start);
+        endDate = Integer.parseInt(end);
+        foodlist = food;
     }
 }

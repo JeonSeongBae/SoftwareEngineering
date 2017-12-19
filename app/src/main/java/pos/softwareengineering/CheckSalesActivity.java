@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CheckSalesActivity extends AppCompatActivity {
@@ -64,11 +65,17 @@ public class CheckSalesActivity extends AppCompatActivity {
         final ArrayList<Foodlist> a = new ArrayList<Foodlist>();
         Foodlist fl = new Foodlist();
         fl.setMenu("menuaa");
-        fl.setNumber("123aa");
+        fl.setNumber(4);
+        fl.setDate(171230);
+        a.add(fl);
+        a.add(fl);
+        a.add(fl);
+        a.add(fl);
         a.add(fl);
         Foodlist fll = new Foodlist();
         fll.setMenu("891fd");
-        fll.setNumber("dfdaq23aa");
+        fll.setNumber(23);
+        fll.setDate(182030);
         a.add(fll);
         te.setFoodlist(a);
         databaseReference.child("food").child("main").setValue(te);
@@ -78,14 +85,42 @@ public class CheckSalesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("SNAPSHOT==", dataSnapshot.toString());
                 Food temp = dataSnapshot.getValue(Food.class);
-                for (int i = 0; i < temp.foodlist.size(); i++){
-                    mainAdapter.addItem(temp.getFoodlist().get(i));
+                mainAdapter.addItem(temp.getFoodlist(),"000000","999999");
+                ArrayList<Integer> aa = new ArrayList<Integer>();
+                ArrayList<String> bb = new ArrayList<String>();
+
+                for (int i=0;i<temp.getFoodlist().size();i++){
+                    if (bb.contains(temp.getFoodlist().get(i).getMenu())){
+                        aa.add(i);
+                    }else{
+                        bb.add(temp.getFoodlist().get(i).getMenu());
+                    }
+                }
+                for (int i=0;i<bb.size();i++){
+                    temp.getFoodlist().remove(bb.get(i));
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference.child("food").child("main").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Log.d("SNAPSHOT==", dataSnapshot.toString());
+                        Food temp = dataSnapshot.getValue(Food.class);
+                        mainAdapter.addItem(temp.getFoodlist(),startDate.getText().toString(), endDate.getText().toString());
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
     }

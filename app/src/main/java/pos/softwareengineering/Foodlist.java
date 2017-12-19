@@ -1,12 +1,10 @@
 package pos.softwareengineering;
 
-/**
- * Created by tjdqo_000 on 2017-12-20.
- */
-
 public class Foodlist {
     public String menu;
-    public String number;
+    public int number;
+    public int date;
+
     public Foodlist() {
     }
 
@@ -14,7 +12,15 @@ public class Foodlist {
         this.menu = menu;
     }
 
-    public void setNumber(String number) {
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -22,7 +28,7 @@ public class Foodlist {
         return menu;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 }
