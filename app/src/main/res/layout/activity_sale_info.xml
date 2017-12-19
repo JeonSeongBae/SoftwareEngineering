@@ -21,11 +21,13 @@
             android:src="@drawable/sale"/>
 
         <EditText
+            android:id="@+id/discountname"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="할 인 명"/>
         <EditText
+            android:id="@+id/discountrate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="할 인 률"/>
@@ -36,12 +38,14 @@
             android:layout_marginTop="20dp">
 
             <Button
+                android:id="@+id/canclebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="취 소"/>
 
             <Button
+                android:id="@+id/discountregist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
