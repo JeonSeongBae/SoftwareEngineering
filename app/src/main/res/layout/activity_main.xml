@@ -23,11 +23,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/table1"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:text="#1"
                 />
             <Button
+                android:id="@+id/table2"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:text="#2"
@@ -39,11 +41,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/table3"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:text="#3"
                 />
             <Button
+                android:id="@+id/table4"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:text="#4"
@@ -60,24 +64,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="관리자메뉴"/>
-        <Button
+        <ExpandableListView
+            android:id="@+id/expanded_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="200dp"></ExpandableListView>
 
-            android:text="주메뉴"/>
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+
+            <!--android:text="주메뉴"/>-->
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="부메뉴"/>-->
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="음료"/>-->
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="부메뉴"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="음료"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="38dp"
             android:id="@+id/paybtn"
             android:text="계산"/>
 
