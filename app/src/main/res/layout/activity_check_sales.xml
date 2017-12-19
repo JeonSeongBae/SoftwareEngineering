@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
+        <EditText
             android:id="@+id/startDate"
             android:text="0000. 00. 00"
             android:layout_weight="3"
@@ -21,19 +21,20 @@
             android:layout_weight="1"
             android:layout_width="0px"
             android:layout_height="match_parent" />
-        <TextView
+        <EditText
             android:id="@+id/endDate"
             android:text="0000. 00. 00"
             android:layout_weight="3"
             android:layout_width="0px"
             android:layout_height="match_parent" />
         <Button
+            android:id="@+id/search"
             android:layout_width="0px"
             android:layout_weight="3"
             android:layout_height="match_parent"
             android:text="검 색"/>
         <Button
-
+            android:id="@+id/cancel"
             android:layout_width="0px"
             android:layout_weight="3"
             android:layout_height="match_parent"

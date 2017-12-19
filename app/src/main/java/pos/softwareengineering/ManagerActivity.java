@@ -24,7 +24,8 @@ public class ManagerActivity extends AppCompatActivity {
         saleinfobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManagerActivity.this,SaleInfoActivity.class);
+                Intent intent = new Intent(ManagerActivity.this,LoginActivity.class);
+                intent.putExtra("type","saleinfobtn");
                 startActivity(intent);
             }
         });
@@ -37,14 +38,16 @@ public class ManagerActivity extends AppCompatActivity {
         detailbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManagerActivity.this,DetailViewActivity.class);
+                Intent intent = new Intent(ManagerActivity.this,LoginActivity.class);
+                intent.putExtra("type","detailbtn");
                 startActivity(intent);
             }
         });
         checksalebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManagerActivity.this,CheckSalesActivity.class);
+                Intent intent = new Intent(ManagerActivity.this,LoginActivity.class);
+                intent.putExtra("type","checksalebtn");
                 startActivity(intent);
             }
         });
