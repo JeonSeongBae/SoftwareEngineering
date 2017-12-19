@@ -24,5 +24,4 @@
         <activity android:name=".SaleInfoActivity" />
         <activity android:name=".PaymentActivity"></activity>
     </application>
-
 </manifest>
