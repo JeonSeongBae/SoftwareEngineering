@@ -1,9 +1,9 @@
 package pos.softwareengineering;
 
 public class Item {
-    private String category;
-    private String menu;
-    private String price;
+    private String category = " ";
+    private String menu = " ";
+    private String price = " ";
 
     public Item(String category, String menu, String price) {
         this.category = category;
