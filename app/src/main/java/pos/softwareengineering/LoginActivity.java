@@ -49,13 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String a = ID.getText().toString();
-                String b = password.getText().toString();
-                if (a.equals("") || b.equals("")){
-                    databaseReference.child("UserID").child("a").setValue("b");
-                }else{
-                    databaseReference.child("UserID").child(ID.getText().toString()).setValue(password.getText().toString());
-                }
+//                String a = ID.getText().toString();
+//                String b = password.getText().toString();
+//                if (a.equals("") || b.equals("")){
+//                    databaseReference.child("UserID").child("a").setValue("b");
+//                }else{
+//                    databaseReference.child("UserID").child(a).setValue(b);
+//                }
 
                 login();
             }
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 HashMap<String, String> a = (HashMap<String, String>) dataSnapshot.getValue();
-                if (a.get(ID.getText().toString()).equals(password.getText().toString())){
+                if (a.get(ID.getText().toString()) != null&&a.get(ID.getText().toString()).equals(password.getText().toString())){
                     Intent intent = getIntent();
                     String type = intent.getStringExtra("type");
                     switch (type){
