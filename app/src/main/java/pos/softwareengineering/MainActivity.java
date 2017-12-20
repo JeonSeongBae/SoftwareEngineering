@@ -80,24 +80,29 @@ public class MainActivity extends AppCompatActivity {
         paybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
-                ArrayList<Integer> intarray = new ArrayList<>();
-                ArrayList<String> stringarray = new ArrayList<>();
-                ArrayList<Integer> pricearray = new ArrayList<>();
-                for(int i = 0; i<selectadapter.getCount(); i++){
-                    intarray.add(((ListItem)selectadapter.getItem(i)).getCount());
+                if (selecttable == null) {
+                    Toast.makeText(mContext, "테이블을 선택해주세요.", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                    ArrayList<Integer> intarray = new ArrayList<>();
+                    ArrayList<String> stringarray = new ArrayList<>();
+                    ArrayList<Integer> pricearray = new ArrayList<>();
+                    for (int i = 0; i < selectadapter.getCount(); i++) {
+                        intarray.add(((ListItem) selectadapter.getItem(i)).getCount());
+                    }
+                    for (int i = 0; i < selectadapter.getCount(); i++) {
+                        stringarray.add(((ListItem) selectadapter.getItem(i)).getMenu());
+                    }
+                    for (int i = 0; i < selectadapter.getCount(); i++) {
+                        pricearray.add(((ListItem) selectadapter.getItem(i)).getPrice());
+                    }
+                    intent.putExtra("pricearray", pricearray);
+                    intent.putExtra("intarray", intarray);
+                    intent.putExtra("stringarray", stringarray);
+                    intent.putExtra("tablenumber", tablenum);
+                    startActivity(intent);
                 }
-                for(int i = 0; i<selectadapter.getCount(); i++){
-                    stringarray.add(((ListItem)selectadapter.getItem(i)).getMenu());
-                }
-                for(int i = 0; i<selectadapter.getCount(); i++){
-                    pricearray.add(((ListItem)selectadapter.getItem(i)).getPrice());
-                }
-                intent.putExtra("pricearray",pricearray);
-                intent.putExtra("intarray",intarray);
-                intent.putExtra("stringarray",stringarray);
-                intent.putExtra("tablenumber",tablenum);
-                startActivity(intent);
             }
         });
 
