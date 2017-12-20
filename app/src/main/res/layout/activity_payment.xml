@@ -34,17 +34,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="20dp"-->
-            <!--android:text="결제수단 ▼"/>-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="20dp"-->
-            <!--android:text="할인적용 ▼"/>-->
-
         <ExpandableListView
             android:id="@+id/expanded_menu"
             android:layout_width="match_parent"
@@ -94,7 +83,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:layout_marginRight="1dp"
+
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:background="@color/blue"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -102,6 +93,9 @@
                 android:id="@+id/canclebtn"
                 android:layout_height="wrap_content" />
             <Button
+
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:background="@color/blue"
                 android:layout_weight="1"
                 android:layout_width="0dp"

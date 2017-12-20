@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/menu"
+        android:layout_marginLeft="50dp"
         android:layout_width="48dp"
         android:layout_height="16dp"
         android:text="메뉴명"/>

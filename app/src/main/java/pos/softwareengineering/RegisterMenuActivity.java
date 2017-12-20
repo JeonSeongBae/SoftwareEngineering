@@ -91,6 +91,7 @@ public class RegisterMenuActivity extends AppCompatActivity {
                                 Foodlist inputFood = new Foodlist();
                                 inputFood.setPrice(Integer.parseInt(price.getText().toString()));
                                 inputFood.setMenu(menu.getText().toString());
+                                inputFood.setCategory("main");
                                 foodlist.add(inputFood);
                                 temp.setFoodlist(foodlist);
                                 databaseReference.child("item").child("main").setValue(temp);
@@ -110,6 +111,7 @@ public class RegisterMenuActivity extends AppCompatActivity {
                                 Foodlist inputFood = new Foodlist();
                                 inputFood.setPrice(Integer.parseInt(price.getText().toString()));
                                 inputFood.setMenu(menu.getText().toString());
+                                inputFood.setCategory("sub");
                                 foodlist.add(inputFood);
                                 temp.setFoodlist(foodlist);
                                 databaseReference.child("item").child("sub").setValue(temp);
@@ -129,6 +131,7 @@ public class RegisterMenuActivity extends AppCompatActivity {
                                 Foodlist inputFood = new Foodlist();
                                 inputFood.setPrice(Integer.parseInt(price.getText().toString()));
                                 inputFood.setMenu(menu.getText().toString());
+                                inputFood.setCategory("drink");
                                 foodlist.add(inputFood);
                                 temp.setFoodlist(foodlist);
                                 databaseReference.child("item").child("drink").setValue(temp);
