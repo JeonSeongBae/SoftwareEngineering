@@ -5,8 +5,17 @@ public class Foodlist {
     public int number;
     public int date;
     public int price;
+    public String category;
 
     public Foodlist() {
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public void setPrice(int price) {

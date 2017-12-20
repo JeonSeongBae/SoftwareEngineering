@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,6 +65,7 @@
                 android:layout_marginRight="4dp"
                 android:background="@color/red"
                 android:text="음 료"/>
+
             <ListView
                 android:id="@+id/drinkList"
                 android:layout_width="match_parent"
@@ -71,7 +73,15 @@
         </LinearLayout>
 
     </LinearLayout>
-
+<LinearLayout
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/updatePrice"
+        android:layout_marginLeft="150dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/registbtn"
         android:layout_width="wrap_content"
@@ -81,5 +91,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:text="상 품 추 가"/>
+</LinearLayout>
+
 
 </LinearLayout>

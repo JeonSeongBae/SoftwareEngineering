@@ -32,6 +32,7 @@
             android:inputType="number"
             android:hint="수량"/>
         <Button
+            android:background="@color/blue"
             android:id="@+id/normal_child_item"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
