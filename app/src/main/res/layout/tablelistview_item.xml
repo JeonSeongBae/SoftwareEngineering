@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:text="type"
         android:gravity="center"
@@ -13,12 +13,12 @@
     <TextView
         android:id="@+id/pricetext"
         android:layout_weight="2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:text="price"
         android:gravity="center"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:text="num"
         android:id="@+id/counttext"

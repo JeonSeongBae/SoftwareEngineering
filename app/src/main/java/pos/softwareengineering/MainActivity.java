@@ -20,10 +20,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    ExpandableListViewAdapter adapter;
+    ArrayList<String> mainList,subList,drinkList;
+    ArrayList<Integer> mainprice,subprice,drinkprice;
     Button paybtn,managerbtn;
     ListView table1,table2,table3,table4,selecttable;
     Context mContext;
@@ -31,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tb1,tb2,tb3,tb4;
     ExpandableListView expandableListView;
     tableListAdapter adapter1,adapter2,adapter3,adapter4,selectadapter;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         adapter2 = new tableListAdapter();
         adapter3 = new tableListAdapter();
         adapter4 = new tableListAdapter();
-
+        mainprice = new ArrayList<>();
+        subprice = new ArrayList<>();
+        drinkprice = new ArrayList<>();
         table1.setAdapter(adapter1);
         table2.setAdapter(adapter2);
         table3.setAdapter(adapter3);
@@ -128,23 +140,101 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ArrayList<ExpandableItem> groupList = new ArrayList<>();
-        ArrayList<String> mainList = new ArrayList<>();
-        mainList.add("햄버거");
-        mainList.add("치킨");
-        mainList.add("피자");
-        ArrayList<String> subList = new ArrayList<>();
-        subList.add("감자튀김");
-        subList.add("치킨너겟");
-        subList.add("과자");
-        ArrayList<String> drinkList = new ArrayList<>();
-        drinkList.add("사이다");
-        drinkList.add("콜라");
-        drinkList.add("환타");
+        mainList = new ArrayList<>();
+        subList = new ArrayList<>();
+        drinkList = new ArrayList<>();
 
+        databaseReference.child("item").child("main").child("foodlist").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Foodlist main = dataSnapshot.getValue(Foodlist.class);
+                mainList.add(main.getMenu());
+                mainprice.add(main.getPrice());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("item").child("sub").child("foodlist").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Foodlist sub = dataSnapshot.getValue(Foodlist.class);
+                subList.add(sub.getMenu());
+                subprice.add(sub.getPrice());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("item").child("drink").child("foodlist").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Foodlist drink = dataSnapshot.getValue(Foodlist.class);
+                drinkList.add(drink.getMenu());
+                drinkprice.add(drink.getPrice());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         groupList.add(new ExpandableItem("주 메 뉴", mainList));
         groupList.add(new ExpandableItem("부 메 뉴", subList));
         groupList.add(new ExpandableItem("음 료", drinkList));
-        ExpandableListViewAdapter adapter = new ExpandableListViewAdapter(groupList);
+        adapter = new ExpandableListViewAdapter(groupList);
         expandableListView.setAdapter(adapter);
 
     }
@@ -202,9 +292,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
             View view = null;
-
+            int i = 0;
             if(groupPosition == 0) { // 주메뉴
                 view = LayoutInflater.from(mContext).inflate(R.layout.normal_child_item, null);
                 final Button button = (Button) view.findViewById(R.id.normal_child_item);
@@ -226,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(mContext, "추가되었습니다.", Toast.LENGTH_LONG).show();
-                                    selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),5000));
+                                    selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),mainprice.get(childPosition)));
                                     selectadapter.notifyDataSetChanged();
                                 }
 
@@ -263,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(mContext, "추가되었습니다.", Toast.LENGTH_LONG).show();
-                                    selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),5000));
+                                    selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),subprice.get(childPosition)));
                                     selectadapter.notifyDataSetChanged();
                                 }
 
@@ -300,7 +390,8 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(mContext, "추가되었습니다.", Toast.LENGTH_LONG).show();
-                                    selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),5000));
+
+                                    selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),drinkprice.get(childPosition)));
                                     selectadapter.notifyDataSetChanged();
                                 }
 
