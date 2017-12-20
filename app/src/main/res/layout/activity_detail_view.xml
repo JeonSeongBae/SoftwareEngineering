@@ -20,6 +20,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:background="@color/green"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:text="주 메 뉴"/>
             <ListView
                 android:id="@+id/mainList"
@@ -34,6 +39,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@color/purple"
                 android:text="부 메 뉴"/>
             <ListView
                 android:id="@+id/subList"
@@ -48,6 +58,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@color/red"
                 android:text="음 료"/>
             <ListView
                 android:id="@+id/drinkList"
@@ -62,6 +77,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:background="@color/blue"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:text="상 품 추 가"/>
 
 </LinearLayout>

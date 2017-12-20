@@ -6,27 +6,32 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="40dp"
+        android:layout_height="38dp" />
+
     <TextView
         android:id="@+id/menu"
-        android:layout_width="40dp"
+        android:layout_width="56dp"
         android:layout_height="28dp"
         android:text="메뉴명" />
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="40dp"
+        android:layout_width="56dp"
         android:layout_height="28dp"
         android:text="가격" />
 
     <Button
         android:id="@+id/modify"
-        android:layout_width="32dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:text="수정" />
 
     <Button
         android:id="@+id/delete"
-        android:layout_width="32dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:text="제거" />
 </LinearLayout>
