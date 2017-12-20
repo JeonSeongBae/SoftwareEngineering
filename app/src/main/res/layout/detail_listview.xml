@@ -25,13 +25,15 @@
 
     <Button
         android:id="@+id/modify"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="수정" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/contract"
+        />
 
     <Button
         android:id="@+id/remove"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="제거" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/garbage"
+        />
 </LinearLayout>

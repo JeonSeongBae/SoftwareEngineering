@@ -81,8 +81,8 @@
     <EditText
         android:id="@+id/updatePrice"
         android:layout_gravity="center"
-        android:layout_marginLeft="260dp"
-        android:layout_marginRight="150dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginRight="200dp"
         android:layout_width="64dp"
         android:textAlignment="center"
         android:layout_height="wrap_content" />
