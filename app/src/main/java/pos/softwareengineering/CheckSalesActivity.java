@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +36,7 @@ public class CheckSalesActivity extends AppCompatActivity {
     ListViewAdapter mainAdapter;
     ListViewAdapter subAdapter;
     ListViewAdapter drinkAdapter;
+    TextView allPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class CheckSalesActivity extends AppCompatActivity {
         endDate = (EditText) findViewById(R.id.endDate);
         search = (Button) findViewById(R.id.search);
         cancle = (Button) findViewById(R.id.cancel);
+        allPrice = (TextView) findViewById(R.id.allPrice);
 
         mainList = (ListView)findViewById(R.id.mainList);
         mainAdapter = new ListViewAdapter();
@@ -61,44 +64,122 @@ public class CheckSalesActivity extends AppCompatActivity {
         subList.setAdapter(subAdapter);
         drinkList.setAdapter(drinkAdapter);
 
-        Food te = new Food();
-        final ArrayList<Foodlist> a = new ArrayList<Foodlist>();
-        Foodlist fl = new Foodlist();
-        fl.setMenu("menuaa");
-        fl.setNumber(4);
-        fl.setDate(171230);
-        a.add(fl);
-        a.add(fl);
-        a.add(fl);
-        a.add(fl);
-        a.add(fl);
-        Foodlist fll = new Foodlist();
-        fll.setMenu("891fd");
-        fll.setNumber(23);
-        fll.setDate(182030);
-        a.add(fll);
-        te.setFoodlist(a);
-        databaseReference.child("food").child("main").setValue(te);
-
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         databaseReference.child("food").child("main").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Food temp = dataSnapshot.getValue(Food.class);
+                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                ArrayList<String> check = new ArrayList<String>();
+                ArrayList<Foodlist> foodview = new ArrayList<>();
+                for (int i=0; i<foodlist.size();i++){
+                    Foodlist food = foodlist.get(i);
+                    if (!check.contains(food.getMenu())){
+                        int count = 0;
+                        for (int index = 0; index < foodlist.size(); index++){
+                            int date = foodlist.get(index).getDate();
+                            if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > 000000 && date < 999999){
+                                int s = foodlist.get(index).getNumber();
+                                count += s;
+                            }
+                        }
+                        check.add(food.getMenu());
+                        food.setNumber(count);
+                        foodview.add(food);
+                    }
+                }
+                int tempprice = Integer.parseInt(allPrice.getText().toString());
+                for (int i =0;i<foodview.size();i++){
+                    int sumprice = foodview.get(i).getPrice();
+                    int sumnumber = foodview.get(i).getNumber();
+                    tempprice += sumprice*sumnumber;
+                }
+                allPrice.setText(String.valueOf(tempprice));
+                mainAdapter.addItem(foodview);
+                mainAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("food").child("sub").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("SNAPSHOT==", dataSnapshot.toString());
                 Food temp = dataSnapshot.getValue(Food.class);
-                mainAdapter.addItem(temp.getFoodlist(),"000000","999999");
-                ArrayList<Integer> aa = new ArrayList<Integer>();
-                ArrayList<String> bb = new ArrayList<String>();
-
-                for (int i=0;i<temp.getFoodlist().size();i++){
-                    if (bb.contains(temp.getFoodlist().get(i).getMenu())){
-                        aa.add(i);
-                    }else{
-                        bb.add(temp.getFoodlist().get(i).getMenu());
+                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                ArrayList<String> check = new ArrayList<String>();
+                ArrayList<Foodlist> foodview = new ArrayList<>();
+                for (int i=0; i<foodlist.size();i++){
+                    Foodlist food = foodlist.get(i);
+                    if (!check.contains(food.getMenu())){
+                        int count = 0;
+                        for (int index = 0; index < foodlist.size(); index++){
+                            int date = foodlist.get(index).getDate();
+                            if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > 000000 && date < 999999){
+                                int s = foodlist.get(index).getNumber();
+                                count += s;
+                            }
+                        }
+                        check.add(food.getMenu());
+                        food.setNumber(count);
+                        foodview.add(food);
                     }
                 }
-                for (int i=0;i<bb.size();i++){
-                    temp.getFoodlist().remove(bb.get(i));
+                int tempprice = Integer.parseInt(allPrice.getText().toString());
+                for (int i =0;i<foodview.size();i++){
+                    int sumprice = foodview.get(i).getPrice();
+                    int sumnumber = foodview.get(i).getNumber();
+                    tempprice += sumprice*sumnumber;
                 }
+                allPrice.setText(String.valueOf(tempprice));
+                subAdapter.addItem(foodview);
+                subAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("food").child("drink").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("SNAPSHOT==", dataSnapshot.toString());
+                Food temp = dataSnapshot.getValue(Food.class);
+                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                ArrayList<String> check = new ArrayList<String>();
+                ArrayList<Foodlist> foodview = new ArrayList<>();
+                for (int i=0; i<foodlist.size();i++){
+                    Foodlist food = foodlist.get(i);
+                    if (!check.contains(food.getMenu())){
+                        int count = 0;
+                        for (int index = 0; index < foodlist.size(); index++){
+                            int date = foodlist.get(index).getDate();
+                            if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > 000000 && date < 999999){
+                                int s = foodlist.get(index).getNumber();
+                                count += s;
+                            }
+                        }
+                        check.add(food.getMenu());
+                        food.setNumber(count);
+                        foodview.add(food);
+                    }
+                }
+                int tempprice = Integer.parseInt(allPrice.getText().toString());
+                for (int i =0;i<foodview.size();i++){
+                    int sumprice = foodview.get(i).getPrice();
+                    int sumnumber = foodview.get(i).getNumber();
+                    tempprice += sumprice*sumnumber;
+                }
+                allPrice.setText(String.valueOf(tempprice));
+                drinkAdapter.addItem(foodview);
+                drinkAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -114,7 +195,118 @@ public class CheckSalesActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Log.d("SNAPSHOT==", dataSnapshot.toString());
                         Food temp = dataSnapshot.getValue(Food.class);
-                        mainAdapter.addItem(temp.getFoodlist(),startDate.getText().toString(), endDate.getText().toString());
+                        ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                        ArrayList<String> check = new ArrayList<String>();
+                        ArrayList<Foodlist> foodview = new ArrayList<>();
+                        for (int i=0; i<foodlist.size();i++){
+                            Foodlist food = foodlist.get(i);
+                            if (!check.contains(food.getMenu())){
+                                int count = 0;
+                                for (int index = 0; index < foodlist.size(); index++){
+                                    int date = foodlist.get(index).getDate();
+                                    if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > Integer.parseInt(startDate.getText().toString()) && date < Integer.parseInt(endDate.getText().toString())){
+                                        int s = foodlist.get(index).getNumber();
+                                        count += s;
+                                    }
+                                }
+                                check.add(food.getMenu());
+                                food.setNumber(count);
+                                if (count != 0){
+                                    foodview.add(food);
+                                }
+                            }
+                        }
+                        int tempprice = Integer.parseInt(allPrice.getText().toString());
+                        for (int i =0;i<foodview.size();i++){
+                            int sumprice = foodview.get(i).getPrice();
+                            int sumnumber = foodview.get(i).getNumber();
+                            tempprice += sumprice*sumnumber;
+                        }
+                        allPrice.setText(String.valueOf(tempprice));
+                        mainAdapter.addItem(foodview);
+                        mainAdapter.notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                databaseReference.child("food").child("sub").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Log.d("SNAPSHOT==", dataSnapshot.toString());
+                        Food temp = dataSnapshot.getValue(Food.class);
+                        ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                        ArrayList<String> check = new ArrayList<String>();
+                        ArrayList<Foodlist> foodview = new ArrayList<>();
+                        for (int i=0; i<foodlist.size();i++){
+                            Foodlist food = foodlist.get(i);
+                            if (!check.contains(food.getMenu())){
+                                int count = 0;
+                                for (int index = 0; index < foodlist.size(); index++){
+                                    int date = foodlist.get(index).getDate();
+                                    if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > Integer.parseInt(startDate.getText().toString()) && date < Integer.parseInt(endDate.getText().toString())){
+                                        int s = foodlist.get(index).getNumber();
+                                        count += s;
+                                    }
+                                }
+                                check.add(food.getMenu());
+                                food.setNumber(count);
+                                if (count != 0){
+                                    foodview.add(food);
+                                }
+                            }
+                        }
+                        int tempprice = Integer.parseInt(allPrice.getText().toString());
+                        for (int i =0;i<foodview.size();i++){
+                            int sumprice = foodview.get(i).getPrice();
+                            int sumnumber = foodview.get(i).getNumber();
+                            tempprice += sumprice*sumnumber;
+                        }
+                        allPrice.setText(String.valueOf(tempprice));
+                        subAdapter.addItem(foodview);
+                        subAdapter.notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                databaseReference.child("food").child("drink").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Log.d("SNAPSHOT==", dataSnapshot.toString());
+                        Food temp = dataSnapshot.getValue(Food.class);
+                        ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                        ArrayList<String> check = new ArrayList<String>();
+                        ArrayList<Foodlist> foodview = new ArrayList<>();
+                        for (int i=0; i<foodlist.size();i++){
+                            Foodlist food = foodlist.get(i);
+                            if (!check.contains(food.getMenu())){
+                                int count = 0;
+                                for (int index = 0; index < foodlist.size(); index++){
+                                    int date = foodlist.get(index).getDate();
+                                    if (foodlist.get(index).getMenu().equals(food.getMenu()) && date > Integer.parseInt(startDate.getText().toString()) && date < Integer.parseInt(endDate.getText().toString())){
+                                        int s = foodlist.get(index).getNumber();
+                                        count += s;
+                                    }
+                                }
+                                check.add(food.getMenu());
+                                food.setNumber(count);
+                                if (count != 0){
+                                    foodview.add(food);
+                                }
+                            }
+                        }
+                        int tempprice = Integer.parseInt(allPrice.getText().toString());
+                        for (int i =0;i<foodview.size();i++){
+                            int sumprice = foodview.get(i).getPrice();
+                            int sumnumber = foodview.get(i).getNumber();
+                            tempprice += sumprice*sumnumber;
+                        }
+                        allPrice.setText(String.valueOf(tempprice));
+                        drinkAdapter.addItem(foodview);
+                        drinkAdapter.notifyDataSetChanged();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
