@@ -67,8 +67,8 @@ public class DetailViewActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Food temp = dataSnapshot.getValue(Food.class);
                 ArrayList<Foodlist> foodlist = temp.getFoodlist();
-                mainAdapter.addItem(foodlist);
-                mainAdapter.notifyDataSetChanged();
+                subAdapter.addItem(foodlist);
+                subAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -80,8 +80,8 @@ public class DetailViewActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Food temp = dataSnapshot.getValue(Food.class);
                 ArrayList<Foodlist> foodlist = temp.getFoodlist();
-                mainAdapter.addItem(foodlist);
-                mainAdapter.notifyDataSetChanged();
+                drinkAdapter.addItem(foodlist);
+                drinkAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

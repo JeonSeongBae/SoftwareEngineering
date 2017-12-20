@@ -32,6 +32,7 @@
                     android:id="@+id/tb1"
                     android:text="#1"/>
             <ListView
+                android:background="@color/green"
                 android:id="@+id/table1"
                 android:layout_width="200dp"
                 android:layout_height="150dp"
@@ -49,6 +50,7 @@
 
                     android:text="#2"/>
                 <ListView
+                    android:background="@color/purple"
                 android:id="@+id/table2"
                 android:layout_width="200dp"
                 android:layout_height="150dp"
@@ -71,6 +73,7 @@
                     android:layout_height="wrap_content"
                     android:text="#3"/>
             <ListView
+                android:background="@color/red"
                 android:id="@+id/table3"
                 android:layout_width="200dp"
                 android:layout_height="150dp"
@@ -86,6 +89,8 @@
                     android:layout_height="wrap_content"
                     android:text="#4"/>
             <ListView
+                android:background="@color/yellow"
+
                 android:id="@+id/table4"
                 android:layout_width="200dp"
                 android:layout_height="150dp"

@@ -1,10 +1,12 @@
 package pos.softwareengineering;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -12,7 +14,9 @@ import java.util.ArrayList;
 public class detailListViewAdapter extends BaseAdapter{
     ArrayList<Foodlist> foodlist = new ArrayList<Foodlist>();
     ArrayList<String> check = new ArrayList<String>();
-
+    String upmenu;
+    int upprice;
+    Context mContext;
     @Override
     public int getCount() {
         return foodlist.size();
@@ -30,7 +34,9 @@ public class detailListViewAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        Foodlist food = foodlist.get(i);
+        final int index = i;
+        final Foodlist food = foodlist.get(i);
+
         if (view == null){
             LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.detail_listview, viewGroup, false);

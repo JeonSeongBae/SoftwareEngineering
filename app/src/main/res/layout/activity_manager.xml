@@ -13,11 +13,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
+            android:background="@color/blue"
             android:id="@+id/checksalebtn"
             android:text="매 출 확 인"
             android:layout_width="150dp"
             android:layout_height="100dp" />
         <Button
+            android:background="@color/green"
             android:id="@+id/detailbtn"
             android:text="상품 상세조회"
             android:layout_width="150dp"
@@ -31,11 +33,13 @@
 
 
         <Button
+            android:background="@color/purple"
             android:id="@+id/saleinfobtn"
             android:text="할 인 혜 택"
             android:layout_width="150dp"
             android:layout_height="100dp" />
         <Button
+            android:background="@color/red"
             android:id="@+id/backbtn"
             android:text="뒤 로 가 기"
             android:layout_width="150dp"

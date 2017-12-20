@@ -8,13 +8,13 @@
 
     <TextView
         android:id="@+id/menu"
-        android:layout_width="48dp"
+        android:layout_width="40dp"
         android:layout_height="28dp"
         android:text="메뉴명" />
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="32dp"
+        android:layout_width="40dp"
         android:layout_height="28dp"
         android:text="가격" />
 

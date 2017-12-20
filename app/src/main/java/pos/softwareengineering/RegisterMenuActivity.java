@@ -52,41 +52,72 @@ public class RegisterMenuActivity extends AppCompatActivity {
             }
         });
 
-        Food food = new Food();
-        ArrayList<Foodlist> foodlist =new ArrayList<>();
-        Foodlist a = new Foodlist();
-
-        a.setMenu("name");
-        a.setPrice(3000);
-        foodlist.add(a);
-        food.setFoodlist(foodlist);
-        foodlist =new ArrayList<>();
-        databaseReference.child("item").child("sub").setValue(food);
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (checkEmpty()){
+                    if (category.getText().toString().equals("main")){
+                        databaseReference.child("item").child("main").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Food temp = dataSnapshot.getValue(Food.class);
+                                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                                Foodlist inputFood = new Foodlist();
+                                inputFood.setPrice(Integer.parseInt(price.getText().toString()));
+                                inputFood.setMenu(menu.getText().toString());
+                                foodlist.add(inputFood);
+                                temp.setFoodlist(foodlist);
+                                databaseReference.child("item").child("main").setValue(temp);
+                            }
 
-                databaseReference.child("item").child("main").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                            Food temp = dataSnapshot.getValue(Food.class);
-                            ArrayList<Foodlist> foodlist = temp.getFoodlist();
-                            Foodlist inputFood = new Foodlist();
-                            inputFood.setPrice(Integer.parseInt(price.getText().toString()));
-                            inputFood.setMenu(menu.getText().toString());
-                            foodlist.add(inputFood);
-                            temp.setFoodlist(foodlist);
-                            databaseReference.child("item").child("main").setValue(temp);
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else if (category.getText().toString().equals("sub")){
+                        databaseReference.child("item").child("sub").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Food temp = dataSnapshot.getValue(Food.class);
+                                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                                Foodlist inputFood = new Foodlist();
+                                inputFood.setPrice(Integer.parseInt(price.getText().toString()));
+                                inputFood.setMenu(menu.getText().toString());
+                                foodlist.add(inputFood);
+                                temp.setFoodlist(foodlist);
+                                databaseReference.child("item").child("sub").setValue(temp);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else{
+                        databaseReference.child("item").child("drink").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Food temp = dataSnapshot.getValue(Food.class);
+                                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                                Foodlist inputFood = new Foodlist();
+                                inputFood.setPrice(Integer.parseInt(price.getText().toString()));
+                                inputFood.setMenu(menu.getText().toString());
+                                foodlist.add(inputFood);
+                                temp.setFoodlist(foodlist);
+                                databaseReference.child("item").child("drink").setValue(temp);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                Toast.makeText(mContext,"상품등록이 완료되었습니다.",Toast.LENGTH_LONG).show();
-                finish();
+                    Toast.makeText(mContext,"상품등록이 완료되었습니다.",Toast.LENGTH_LONG).show();
+                    finish();
+                }
             }
 
             private boolean checkEmpty() {
