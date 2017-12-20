@@ -4,9 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,18 +26,122 @@ public class DetailViewActivity extends AppCompatActivity {
     ListView mainList;
     ListView subList;
     ListView drinkList;
+    EditText updatePrice;
     detailListViewAdapter mainAdapter;
     detailListViewAdapter subAdapter;
     detailListViewAdapter drinkAdapter;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Context mContext;
+    public class detailListViewAdapter extends BaseAdapter {
+
+        ArrayList<Foodlist> foodlist = new ArrayList<Foodlist>();
+        Button remove;
+        Button modify;
+        String upPrice;
+
+        @Override
+        public int getCount() {
+            return foodlist.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return foodlist.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            final int index = i;
+            final Foodlist food = foodlist.get(i);
+
+            if (view == null){
+                LayoutInflater inflater = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.detail_listview, viewGroup, false);
+            }
+            TextView menu = (TextView) view.findViewById(R.id.menu);
+            TextView number = (TextView) view.findViewById(R.id.price);
+            remove = (Button) view.findViewById(R.id.remove);
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    databaseReference.child("item").child(foodlist.get(index).getCategory()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Food temp = dataSnapshot.getValue(Food.class);
+                            ArrayList<Foodlist> dbfoodlist = temp.getFoodlist();
+                            dbfoodlist.remove(index);
+                            temp.setFoodlist(dbfoodlist);
+                            String a = dataSnapshot.getKey();
+                            databaseReference.child("item").child(a).setValue(temp);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    foodlist.remove(index);
+                    notifyDataSetChanged();
+                }
+            });
+
+            modify = (Button) view.findViewById(R.id.modify);
+            modify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Foodlist tempfood = foodlist.get(index);
+                    tempfood.setPrice(Integer.parseInt(updatePrice.getText().toString()));
+                    foodlist.set(index, tempfood);
+                    updateDB();
+                    upPrice = updatePrice.getText().toString();
+                    updatePrice.setText("");
+                    notifyDataSetChanged();
+                }
+
+                private void updateDB() {
+                    databaseReference.child("item").child(foodlist.get(index).getCategory()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Food temp = dataSnapshot.getValue(Food.class);
+                            ArrayList<Foodlist> dbfoodlist = temp.getFoodlist();
+                            Foodlist dbfood = dbfoodlist.get(index);
+                            dbfood.setPrice(Integer.parseInt(upPrice));
+                            dbfoodlist.set(index,dbfood);
+                            temp.setFoodlist(dbfoodlist);
+                            String a = dataSnapshot.getKey();
+                            databaseReference.child("item").child(a).setValue(temp);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            });
+
+            menu.setText(food.getMenu());
+            number.setText(String.valueOf(food.getPrice()));
+
+            return view;
+        }
+        public void addItem(ArrayList<Foodlist> food){
+            foodlist = food;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
-
+        updatePrice = (EditText) findViewById(R.id.updatePrice);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         mContext = this;

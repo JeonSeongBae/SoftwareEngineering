@@ -190,6 +190,7 @@ public class CheckSalesActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                allPrice.setText("0");
                 databaseReference.child("food").child("main").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

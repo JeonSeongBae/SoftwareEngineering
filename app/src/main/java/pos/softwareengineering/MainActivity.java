@@ -281,10 +281,11 @@ public class MainActivity extends AppCompatActivity {
             return 0;
         }
 
+        @SuppressLint("ResourceAsColor")
         @Override
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.group_item, null);
-
+            view.setBackgroundColor(R.color.green);
             TextView title = (TextView) view.findViewById(R.id.group_title);
             title.setText(list.get(groupPosition).getTitle());
 

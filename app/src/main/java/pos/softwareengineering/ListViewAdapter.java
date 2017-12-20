@@ -36,6 +36,7 @@ public class ListViewAdapter extends BaseAdapter{
         }
         TextView menu = (TextView) view.findViewById(R.id.menu);
         TextView number = (TextView) view.findViewById(R.id.number);
+
         menu.setText(food.getMenu());
         number.setText(String.valueOf(food.getNumber()));
 
