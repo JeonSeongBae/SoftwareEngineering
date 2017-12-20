@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -110,14 +111,18 @@ public class DetailViewActivity extends AppCompatActivity {
             modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (!updatePrice.getText().toString().equals("")){
+                        Foodlist tempfood = foodlist.get(index);
+                        tempfood.setPrice(Integer.parseInt(updatePrice.getText().toString()));
+                        foodlist.set(index, tempfood);
+                        updateDB();
+                        upPrice = updatePrice.getText().toString();
+                        updatePrice.setText("");
+                        notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(mContext, "수정할 금액을 입력해주세요.",Toast.LENGTH_LONG).show();
+                    }
 
-                    Foodlist tempfood = foodlist.get(index);
-                    tempfood.setPrice(Integer.parseInt(updatePrice.getText().toString()));
-                    foodlist.set(index, tempfood);
-                    updateDB();
-                    upPrice = updatePrice.getText().toString();
-                    updatePrice.setText("");
-                    notifyDataSetChanged();
                 }
 
                 private void updateDB() {
