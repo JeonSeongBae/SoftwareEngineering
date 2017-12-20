@@ -16,13 +16,14 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_marginTop="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/sale"/>
 
         <EditText
             android:id="@+id/discountname"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="할 인 명"/>
@@ -35,13 +36,16 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/canclebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/blue"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:text="취 소"/>
 
             <Button
@@ -49,6 +53,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/blue"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:text="등 록" />
         </LinearLayout>
     </LinearLayout>

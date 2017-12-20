@@ -5,54 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:layout_gravity="center"
     tools:context="pos.softwareengineering.LoginActivity">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <ImageView
+            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/login"/>
+            android:layout_height="140dp"
+            android:src="@drawable/login" />
 
         <EditText
             android:id="@+id/ID"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  I    D"/>
+            android:layout_marginTop="10dp"
+            android:hint="  I    D" />
+
         <EditText
             android:id="@+id/pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  P  W"/>
+            android:hint="  P  W" />
+
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <Button
-                android:background="@color/blue"
                 android:id="@id/cancel"
                 android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="30dp"
                 android:layout_marginRight="4dp"
-                android:text="취 소"/>
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:text="취 소" />
 
             <Button
-                android:background="@color/blue"
                 android:id="@+id/loginbtn"
                 android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="30dp"
                 android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@color/blue"
                 android:text="로그인" />
         </LinearLayout>
     </LinearLayout>

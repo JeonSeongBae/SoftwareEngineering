@@ -21,39 +21,48 @@
 
         <EditText
             android:id="@+id/category"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            android:textSize="14dp"
             android:hint="카테고리"/>
 
         <EditText
             android:id="@+id/menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            android:textSize="14dp"
             android:hint="메 뉴 명"/>
 
         <EditText
             android:id="@+id/price"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            android:textSize="14dp"
             android:hint="가 격"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="4dp">
 
             <Button
                 android:id="@+id/cancel"
+                android:background="@color/blue"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_weight="1"
                 android:text="취 소"/>
 
             <Button
                 android:id="@+id/register"
+                android:background="@color/blue"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_weight="1"
                 android:text="등 록" />
         </LinearLayout>

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:text="8조's POS System"/>
 
         <LinearLayout
@@ -31,13 +31,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tb1"
                     android:text="#1"/>
-            <ListView
-                android:background="@color/green"
-                android:id="@+id/table1"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                android:text="#1"
-                />
+
+                <ListView
+                    android:id="@+id/table1"
+                    android:layout_width="200dp"
+                    android:layout_height="120dp"
+                    android:background="@color/green"
+                    android:text="#1" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -49,13 +49,13 @@
                     android:id="@+id/tb2"
 
                     android:text="#2"/>
+
                 <ListView
+                    android:id="@+id/table2"
+                    android:layout_width="200dp"
+                    android:layout_height="120dp"
                     android:background="@color/purple"
-                android:id="@+id/table2"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                android:text="#2"
-                />
+                    android:text="#2" />
             </LinearLayout>
         </LinearLayout>
 
@@ -72,12 +72,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#3"/>
-            <ListView
-                android:background="@color/red"
-                android:id="@+id/table3"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                />
+
+                <ListView
+                    android:id="@+id/table3"
+                    android:layout_width="200dp"
+                    android:layout_height="120dp"
+                    android:background="@color/red" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -88,13 +88,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#4"/>
-            <ListView
-                android:background="@color/yellow"
 
-                android:id="@+id/table4"
-                android:layout_width="200dp"
-                android:layout_height="150dp"
-                />
+                <ListView
+                    android:id="@+id/table4"
+
+                    android:layout_width="200dp"
+                    android:layout_height="120dp"
+                    android:background="@color/yellow" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -106,35 +106,21 @@
         <Button
             android:id="@+id/managerbtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:background="@color/blue"
-            android:text="관리자메뉴"/>
+            android:text="관 리 자 메 뉴"/>
         <ExpandableListView
             android:id="@+id/expanded_menu"
             android:layout_width="match_parent"
             android:layout_height="200dp"></ExpandableListView>
 
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="20dp"-->
-
-            <!--android:text="주메뉴"/>-->
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="부메뉴"/>-->
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="음료"/>-->
         <Button
             android:background="@color/blue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginTop="38dp"
             android:id="@+id/paybtn"
-            android:text="계산"/>
+            android:text="계            산"/>
 
 
     </LinearLayout>
