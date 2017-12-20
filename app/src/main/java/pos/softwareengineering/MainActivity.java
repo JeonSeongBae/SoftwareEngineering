@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button paybtn,managerbtn;
     ListView table1,table2,table3,table4,selecttable;
     Context mContext;
+    static final int PICK_CONTACT_REQUEST = 1;
     String tablenum;
     TextView tb1,tb2,tb3,tb4;
     ExpandableListView expandableListView;
@@ -80,24 +81,29 @@ public class MainActivity extends AppCompatActivity {
         paybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
-                ArrayList<Integer> intarray = new ArrayList<>();
-                ArrayList<String> stringarray = new ArrayList<>();
-                ArrayList<Integer> pricearray = new ArrayList<>();
-                for(int i = 0; i<selectadapter.getCount(); i++){
-                    intarray.add(((ListItem)selectadapter.getItem(i)).getCount());
+                if (selecttable == null) {
+                    Toast.makeText(mContext, "테이블을 선택해주세요.", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                    ArrayList<Integer> intarray = new ArrayList<>();
+                    ArrayList<String> stringarray = new ArrayList<>();
+                    ArrayList<Integer> pricearray = new ArrayList<>();
+                    for (int i = 0; i < selectadapter.getCount(); i++) {
+                        intarray.add(((ListItem) selectadapter.getItem(i)).getCount());
+                    }
+                    for (int i = 0; i < selectadapter.getCount(); i++) {
+                        stringarray.add(((ListItem) selectadapter.getItem(i)).getMenu());
+                    }
+                    for (int i = 0; i < selectadapter.getCount(); i++) {
+                        pricearray.add(((ListItem) selectadapter.getItem(i)).getPrice());
+                    }
+                    intent.putExtra("pricearray", pricearray);
+                    intent.putExtra("intarray", intarray);
+                    intent.putExtra("stringarray", stringarray);
+                    intent.putExtra("tablenumber", tablenum);
+                    startActivityForResult(intent,PICK_CONTACT_REQUEST);
                 }
-                for(int i = 0; i<selectadapter.getCount(); i++){
-                    stringarray.add(((ListItem)selectadapter.getItem(i)).getMenu());
-                }
-                for(int i = 0; i<selectadapter.getCount(); i++){
-                    pricearray.add(((ListItem)selectadapter.getItem(i)).getPrice());
-                }
-                intent.putExtra("pricearray",pricearray);
-                intent.putExtra("intarray",intarray);
-                intent.putExtra("stringarray",stringarray);
-                intent.putExtra("tablenumber",tablenum);
-                startActivity(intent);
             }
         });
 
@@ -239,6 +245,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == PICK_CONTACT_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                selectadapter.clear();
+                selectadapter.notifyDataSetChanged();
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+
+                // Do something with the contact here (bigger example below)
+            }
+        }
+    }
+
     public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         public ArrayList<ExpandableItem> list;
 
@@ -319,6 +340,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(mContext, "추가되었습니다.", Toast.LENGTH_LONG).show();
                                     selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),mainprice.get(childPosition)));
                                     selectadapter.notifyDataSetChanged();
+                                    num.setText("");
                                 }
 
                             }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -356,6 +378,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(mContext, "추가되었습니다.", Toast.LENGTH_LONG).show();
                                     selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),subprice.get(childPosition)));
                                     selectadapter.notifyDataSetChanged();
+                                    num.setText("");
                                 }
 
                             }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -394,6 +417,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     selectadapter.addItem(new ListItem(text.getText().toString(),Integer.parseInt(num.getText().toString()),drinkprice.get(childPosition)));
                                     selectadapter.notifyDataSetChanged();
+                                    num.setText("");
                                 }
 
                             }).setNegativeButton("취소", new DialogInterface.OnClickListener() {

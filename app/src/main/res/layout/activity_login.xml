@@ -30,9 +30,10 @@
 
         <EditText
             android:id="@+id/pass"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  P  W" />
+            android:hint=" P  W"/>
 
         <LinearLayout
             android:layout_width="match_parent"

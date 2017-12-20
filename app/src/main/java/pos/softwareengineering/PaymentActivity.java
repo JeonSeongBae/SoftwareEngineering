@@ -1,6 +1,7 @@
 package pos.softwareengineering;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -164,127 +165,134 @@ public class PaymentActivity extends AppCompatActivity {
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"결제가 완료되었습니다!",Toast.LENGTH_SHORT).show();
+                if((Integer.parseInt(givenpay.getText().toString()) - Integer.parseInt(pay.getText().toString()))<0){
+                    Toast.makeText(getApplicationContext(),"돈이 부족합니다!!",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"결제가 완료되었습니다!",Toast.LENGTH_SHORT).show();
 
-                databaseReference.child("item").child("main").child("foodlist").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        Foodlist food = dataSnapshot.getValue(Foodlist.class);
-                        for(int i=0;i<stringarray.size();i++){
-                            if(food.getMenu().equals(stringarray.get(i))){
-                                long now = System.currentTimeMillis();
-                                Date date = new Date(now);
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                                String getTime = sdf.format(date);
-                                int time = Integer.parseInt(getTime)-20000000;
-                                food.setDate(time);
-                                food.setNumber(intarray.get(i));
-                                databaseReference.child("food").child("main").child("foodlist").child(mainnum+"").setValue(food);
-                                mainnum++;
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                databaseReference.child("item").child("sub").child("foodlist").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        Foodlist food = dataSnapshot.getValue(Foodlist.class);
-                        for(int i=0;i<stringarray.size();i++){
-                            if(food.getMenu().equals(stringarray.get(i))){
-                                long now = System.currentTimeMillis();
-                                Date date = new Date(now);
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                                String getTime = sdf.format(date);
-                                int time = Integer.parseInt(getTime)-20000000;
-                                food.setDate(time);
-                                food.setNumber(intarray.get(i));
-                                databaseReference.child("food").child("sub").child("foodlist").child(subnum+"").setValue(food);
-                                subnum++;
+                    databaseReference.child("item").child("main").child("foodlist").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            Foodlist food = dataSnapshot.getValue(Foodlist.class);
+                            for(int i=0;i<stringarray.size();i++){
+                                if(food.getMenu().equals(stringarray.get(i))){
+                                    long now = System.currentTimeMillis();
+                                    Date date = new Date(now);
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                    String getTime = sdf.format(date);
+                                    int time = Integer.parseInt(getTime)-20000000;
+                                    food.setDate(time);
+                                    food.setNumber(intarray.get(i));
+                                    databaseReference.child("food").child("main").child("foodlist").child(mainnum+"").setValue(food);
+                                    mainnum++;
+                                }
                             }
                         }
 
-                    }
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        }
 
-                    }
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        }
 
-                    }
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                        }
 
-                    }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+                    databaseReference.child("item").child("sub").child("foodlist").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            Foodlist food = dataSnapshot.getValue(Foodlist.class);
+                            for(int i=0;i<stringarray.size();i++){
+                                if(food.getMenu().equals(stringarray.get(i))){
+                                    long now = System.currentTimeMillis();
+                                    Date date = new Date(now);
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                    String getTime = sdf.format(date);
+                                    int time = Integer.parseInt(getTime)-20000000;
+                                    food.setDate(time);
+                                    food.setNumber(intarray.get(i));
+                                    databaseReference.child("food").child("sub").child("foodlist").child(subnum+"").setValue(food);
+                                    subnum++;
+                                }
+                            }
 
-                    }
-                });
-                databaseReference.child("item").child("drink").child("foodlist").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        Foodlist food = dataSnapshot.getValue(Foodlist.class);
-                        for(int i=0;i<stringarray.size();i++){
-                            if(food.getMenu().equals(stringarray.get(i))){
-                                long now = System.currentTimeMillis();
-                                Date date = new Date(now);
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                                String getTime = sdf.format(date);
-                                int time = Integer.parseInt(getTime)-20000000;
-                                food.setDate(time);
-                                food.setNumber(intarray.get(i));
-                                databaseReference.child("food").child("drink").child("foodlist").child(drinknum+"").setValue(food);
-                                drinknum++;
+                        }
+
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    databaseReference.child("item").child("drink").child("foodlist").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            Foodlist food = dataSnapshot.getValue(Foodlist.class);
+                            for(int i=0;i<stringarray.size();i++){
+                                if(food.getMenu().equals(stringarray.get(i))){
+                                    long now = System.currentTimeMillis();
+                                    Date date = new Date(now);
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                    String getTime = sdf.format(date);
+                                    int time = Integer.parseInt(getTime)-20000000;
+                                    food.setDate(time);
+                                    food.setNumber(intarray.get(i));
+                                    databaseReference.child("food").child("drink").child("foodlist").child(drinknum+"").setValue(food);
+                                    drinknum++;
+                                }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
 
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_OK,returnIntent);
+                    finish();
+                }
 
 
             }

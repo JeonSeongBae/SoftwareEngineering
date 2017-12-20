@@ -9,19 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="landscape">
+         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".ManagerActivity" />
-        <activity android:name=".DetailViewActivity" />
-        <activity android:name=".CheckSalesActivity" />
-        <activity android:name=".RegisterMenuActivity" />
-        <activity android:name=".SaleInfoActivity" />
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ManagerActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".DetailViewActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CheckSalesActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".RegisterMenuActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".SaleInfoActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".PaymentActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 </manifest>

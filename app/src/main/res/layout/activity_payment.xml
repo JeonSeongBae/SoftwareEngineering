@@ -83,6 +83,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:background="@color/blue"
@@ -92,6 +93,7 @@
                 android:id="@+id/canclebtn"
                 android:layout_height="wrap_content" />
             <Button
+
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:background="@color/blue"

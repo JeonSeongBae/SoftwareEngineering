@@ -191,6 +191,9 @@ public class CheckSalesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 allPrice.setText("0");
+                if(startDate.getText().toString().equals("000000")&&endDate.getText().toString().equals("000000")){
+                    finish();
+                }
                 databaseReference.child("food").child("main").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
