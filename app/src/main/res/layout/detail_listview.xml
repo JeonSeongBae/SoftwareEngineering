@@ -14,13 +14,13 @@
     <TextView
         android:id="@+id/menu"
         android:layout_width="56dp"
-        android:layout_height="28dp"
+        android:layout_height="25dp"
         android:text="메뉴명" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="56dp"
-        android:layout_height="28dp"
+        android:layout_height="25dp"
         android:text="가격" />
 
     <Button
