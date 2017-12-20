@@ -54,8 +54,32 @@ public class DetailViewActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Food temp = dataSnapshot.getValue(Food.class);
                 ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                mainAdapter.addItem(foodlist);
+                mainAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        databaseReference.child("item").child("sub").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Food temp = dataSnapshot.getValue(Food.class);
+                ArrayList<Foodlist> foodlist = temp.getFoodlist();
+                mainAdapter.addItem(foodlist);
+                mainAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        databaseReference.child("item").child("drink").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Food temp = dataSnapshot.getValue(Food.class);
+                ArrayList<Foodlist> foodlist = temp.getFoodlist();
                 mainAdapter.addItem(foodlist);
                 mainAdapter.notifyDataSetChanged();
             }
