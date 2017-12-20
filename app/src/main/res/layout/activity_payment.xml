@@ -48,7 +48,7 @@
         <ExpandableListView
             android:id="@+id/expanded_menu"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="150dp">
 
 
         </ExpandableListView>
@@ -90,7 +90,6 @@
             android:layout_height="wrap_content"
             android:text="거스름돈"/>
         <LinearLayout
-            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

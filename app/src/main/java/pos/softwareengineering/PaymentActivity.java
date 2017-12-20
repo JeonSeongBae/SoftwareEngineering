@@ -30,11 +30,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PaymentActivity extends AppCompatActivity {
     ListView listView;
     EditText givenpay;
+    int drinknum,mainnum,subnum;
     TextView tablen;
     TextView pay,givepay,exchange;
     Context mContext;
@@ -44,13 +47,17 @@ public class PaymentActivity extends AppCompatActivity {
     Button cancle,payment;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
-
+    ArrayList<Integer> intarray, pricearray;
+    ArrayList<String> stringarray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         expandableListView = (ExpandableListView)findViewById(R.id.expanded_menu);
         mContext = this;
+        drinknum =0;
+        subnum = 0;
+        mainnum = 0;
         discountrate = new ArrayList<Integer>();
         givepay = (TextView)findViewById(R.id.givepay);
         cancle = (Button)findViewById(R.id.canclebtn);
@@ -61,6 +68,91 @@ public class PaymentActivity extends AppCompatActivity {
         allpay = 0;
         givenpay = (EditText)findViewById(R.id.givenpay);
         exchange = (TextView)findViewById(R.id.exchange);
+        databaseReference.child("food").child("main").child("foodlist").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                mainnum++;
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("food").child("sub").child("foodlist").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                subnum++;
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        databaseReference.child("food").child("drink").child("foodlist").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                drinknum++;
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        Intent intent = getIntent();
+        String tablenum =intent.getStringExtra("tablenumber");
+        tablen.setText(tablenum);
+        intarray = intent.getIntegerArrayListExtra("intarray");
+        stringarray = intent.getStringArrayListExtra("stringarray");
+        pricearray = intent.getIntegerArrayListExtra("pricearray");
+
         givenpay.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -73,6 +165,128 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"결제가 완료되었습니다!",Toast.LENGTH_SHORT).show();
+
+                databaseReference.child("item").child("main").child("foodlist").addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Foodlist food = dataSnapshot.getValue(Foodlist.class);
+                        for(int i=0;i<stringarray.size();i++){
+                            if(food.getMenu().equals(stringarray.get(i))){
+                                long now = System.currentTimeMillis();
+                                Date date = new Date(now);
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                String getTime = sdf.format(date);
+                                int time = Integer.parseInt(getTime)-20000000;
+                                food.setDate(time);
+                                food.setNumber(intarray.get(i));
+                                databaseReference.child("food").child("main").child("foodlist").child(mainnum+"").setValue(food);
+                                mainnum++;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                databaseReference.child("item").child("sub").child("foodlist").addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Foodlist food = dataSnapshot.getValue(Foodlist.class);
+                        for(int i=0;i<stringarray.size();i++){
+                            if(food.getMenu().equals(stringarray.get(i))){
+                                long now = System.currentTimeMillis();
+                                Date date = new Date(now);
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                String getTime = sdf.format(date);
+                                int time = Integer.parseInt(getTime)-20000000;
+                                food.setDate(time);
+                                food.setNumber(intarray.get(i));
+                                databaseReference.child("food").child("sub").child("foodlist").child(subnum+"").setValue(food);
+                                subnum++;
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                databaseReference.child("item").child("drink").child("foodlist").addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        Foodlist food = dataSnapshot.getValue(Foodlist.class);
+                        for(int i=0;i<stringarray.size();i++){
+                            if(food.getMenu().equals(stringarray.get(i))){
+                                long now = System.currentTimeMillis();
+                                Date date = new Date(now);
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                                String getTime = sdf.format(date);
+                                int time = Integer.parseInt(getTime)-20000000;
+                                food.setDate(time);
+                                food.setNumber(intarray.get(i));
+                                databaseReference.child("food").child("drink").child("foodlist").child(drinknum+"").setValue(food);
+                                drinknum++;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
             }
         });
         cancle.setOnClickListener(new View.OnClickListener() {
@@ -82,12 +296,7 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
         tableListAdapter adapter = new tableListAdapter();
-        Intent intent = getIntent();
-        ArrayList<Integer> intarray = intent.getIntegerArrayListExtra("intarray");
-        ArrayList<String> stringarray = intent.getStringArrayListExtra("stringarray");
-        ArrayList<Integer> pricearray = intent.getIntegerArrayListExtra("pricearray");
-        String tablenum =intent.getStringExtra("tablenumber");
-        tablen.setText(tablenum);
+
         listView.setAdapter(adapter);
         for(int i = 0; i<intarray.size(); i++){
             adapter.addItem(new ListItem(stringarray.get(i),intarray.get(i),pricearray.get(i)));
@@ -100,6 +309,8 @@ public class PaymentActivity extends AppCompatActivity {
         payList.add("카드계산");
         payList.add("포인트계산");
         final ArrayList<String> discountList = new ArrayList<>();
+        discountList.add("할인없음");
+        discountrate.add(0);
 
         databaseReference.child("discount").addChildEventListener(new ChildEventListener() {
             @Override
@@ -129,9 +340,6 @@ public class PaymentActivity extends AppCompatActivity {
 
             }
         });
-//
-        discountList.add("할인없음");
-        discountrate.add(0);
 
 
         groupList.add(new ExpandableItem("결제수단", payList));
