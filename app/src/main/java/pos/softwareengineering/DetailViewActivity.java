@@ -70,7 +70,7 @@ public class DetailViewActivity extends AppCompatActivity {
             remove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    databaseReference.child("item").child(foodlist.get(index).getCategory()).addValueEventListener(new ValueEventListener() {
+                    databaseReference.child("item").child(foodlist.get(index).getCategory()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Food temp = dataSnapshot.getValue(Food.class);
